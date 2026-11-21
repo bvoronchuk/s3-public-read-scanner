@@ -1,0 +1,21 @@
+{
+  "bucket_name": "internal-reports-example",
+  "bucket_policy": {
+    "Version": "2012-10-17",
+    "Statement": [
+      {
+        "Sid": "PublicRead",
+        "Effect": "Allow",
+        "Principal": "*",
+        "Action": "s3:GetObject",
+        "Resource": "arn:aws:s3:::internal-reports-example/*"
+      }
+    ]
+  },
+  "bucket_public_access_block": {
+    "RestrictPublicBuckets": false
+  },
+  "account_public_access_block": {
+    "RestrictPublicBuckets": true
+  }
+}
