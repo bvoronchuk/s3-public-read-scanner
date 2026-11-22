@@ -82,6 +82,8 @@ The supported path is a direct anonymous request to a general-purpose bucket. Th
 
 The result describes what the collected configuration permits. There is no request for object data. Object-level controls such as SSE-KMS can affect actual reads. ACLs and access point policies can grant access through other paths and are outside the prototype. [S3 access control](https://docs.aws.amazon.com/AmazonS3/latest/userguide/access-control-overview.html)
 
+**Next step.** Extend the check to handle a bucket policy that combines a public `Allow` with a `Deny` for requests without HTTPS. Add a test showing that the policy still permits anonymous reads over HTTPS when Block Public Access is off.
+
 ## Scaling to 3,000 environments
 
 Queue jobs per customer account and use bounded worker concurrency with per-account rate limits. Read the effective account setting once per scan, paginate bucket inventory, and reuse the account setting across bucket checks. Retry throttled and transient requests with backoff and jitter. Record permission failures as coverage gaps. Use idempotent writes keyed by customer, bucket, and check, with timestamps for the last successful evaluation and the latest collection attempt.
